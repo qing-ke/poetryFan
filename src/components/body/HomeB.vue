@@ -25,7 +25,7 @@
       <div>
         <span>标签</span>
         <div style="color: #cdcdcd;font-size: 15px;display: inline-block;">
-          <span>名人名言</span>
+          <span>名人名言  </span>
         </div>
       </div>
     </div>
