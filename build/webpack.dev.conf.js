@@ -21,6 +21,7 @@ let sentences1 = appData.sentences1
 let sentences2 = appData.sentences2
 let sentences3 = appData.sentences3
 let sentences4 = appData.sentences4
+let sentenceMeet = appData.sentenceMeet
 let apiRoutes = express.Router()
 app.use('/api', apiRoutes)
 
@@ -50,7 +51,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     hot: true,
     contentBase: false, // since we use CopyWebpackPlugin.
     compress: true,
-    host: HOST || config.dev.host,
+    //host: HOST || config.dev.host,
+    host:'0.0.0.0',
     port: PORT || config.dev.port,
     open: config.dev.autoOpenBrowser,
     overlay: config.dev.errorOverlay
@@ -89,6 +91,13 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           // 这里是你的json内容
           error: 0,
           data: sentences4
+        })
+      })
+      app.get('/api/sentenceMeet', (req, res) => {
+        res.json({
+          // 这里是你的json内容
+          error: 0,
+          data: sentenceMeet
         })
       })
     }

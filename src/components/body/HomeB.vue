@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div v-if="sencetentMeet">
     <div style="border-bottom: solid 1px #cdcdcd;padding: 20px;">
       <div>
         <span>
-          母亲的心是儿女们感情的温度表母亲的心是儿女们感情的温度表母亲的心是儿女们感情的温度表母亲的心是儿女们感情的温度表母亲的心是儿女们感情的温度表
+          {{ sencetentMeet.content }}
         </span>
       </div>
       <div style="margin:10px 0;color:#1afa29;">
@@ -25,19 +25,14 @@
       <div>
         <span>标签</span>
         <div style="color: #cdcdcd;font-size: 15px;display: inline-block;">
-          <span>名人名言  </span>
+          <span>名人名言</span>
         </div>
       </div>
     </div>
     <div>
       <span>心得/评论(3)</span>
       <hr>
-      <div>
-        <span>头像</span>
-        <span>昵称</span>
-        <span>时间</span>
-        <span>评论</span>
-      </div>
+      <v-comments></v-comments>
       <div>
         <textarea name="" id="" cols="30" rows="10"></textarea>
         <button>发布</button>
@@ -47,8 +42,26 @@
 </template>
 
 <script>
+  import comments from './comments'
   export default {
-    name: 'home-b'
+    name: 'home-b',
+    data () {
+      return {
+        sencetentMeet: {
+        }
+      }
+    },
+    components: {
+      'v-comments': comments
+    },
+    created () {
+      this.$http.get('/api/sentenceMeet').then((response) => {
+        console.log(response)
+        if (response.body && response.body.error === 0) {
+          this.sencetentMeet = response.body.data
+        }
+      })
+    }
   }
 </script>
 

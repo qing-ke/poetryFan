@@ -61,7 +61,7 @@
       }
     },
     created () {
-      this.$http.get('http://localhost:8080/api/sentences' + this.count).then((response) => {
+      this.$http.get('/api/sentences' + this.count).then((response) => {
         console.log(response)
         if (response.body && response.body.error === 0) {
           this.sentences = response.body.data
@@ -137,7 +137,7 @@
         //     }
         //   ]
         // }
-        this.$http.get('http://localhost:8080/api/sentences' + val).then((response) => {
+        this.$http.get('/api/sentences' + val).then((response) => {
           console.log(response)
           if (response.body && response.body.error === 0) {
             this.sentences = response.body.data
